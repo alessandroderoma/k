@@ -38,6 +38,9 @@
 # *.iml
 # *.ipr
 
+# build files
+build/
+
 # CMake
 cmake-build-*/
 
