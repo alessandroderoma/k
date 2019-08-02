@@ -30,6 +30,4 @@ else:
     resource = paramStr(2)
   command &= " get " & resource
 
-# if paramCount <= 2, then kubectl -n [namespace] get [resource]
-echo command
 exec(command)
