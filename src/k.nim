@@ -12,20 +12,24 @@ if (paramCount < 1):
 
 let namespace = paramStr(1)
 var resource = "po"
-var command = ""
+var command = "kubectl -n " & namespace
 
 
-# if paramCount == 2, then kubectl -n [namespace] get [resource]
-if (paramCount == 2):
-  resource = paramStr(2)
-  command = "kubectl -n " & namespace & " get " & resource
-else:
+if (paramCount > 2):
   let operation = paramStr(2);
+  resource = operation;
   case operation
     of "fwd":
-      command = "kubectl -n " & namespace & " port-forward " & arguments(3)
+      command &= " port-forward " & arguments(3)
     of "logs":
-      command = "kubectl -n " & namespace & " logs " & arguments(3)
+      command &= " logs " & arguments(3)
+    else:
+      command &= " get " & resource & " " & arguments(3)
+else:
+  if (paramCount == 2):
+    resource = paramStr(2)
+  command &= " get " & resource
 
-
+# if paramCount <= 2, then kubectl -n [namespace] get [resource]
+echo command
 exec(command)
