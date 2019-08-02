@@ -14,6 +14,7 @@ Supported:
 #### Compiling
 
  - Download and install [`nim`](https://nim-lang.org/), v0.20+. Don't forget to add it to `$PATH`.
+ - `cd src/`
  - Launch `make` to build the `k` binary
  - Launch `make install` ti install the binary to `/usr/local/bin/`
  - Enjoy!
